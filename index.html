@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>介護タクシー えまる｜カラーパレット選定ツール</title>
+<title>介護タクシー えまる｜カラーパレット選定</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
     background: #f0ede8;
     color: #2a2a2a;
     line-height: 1.7;
@@ -24,303 +24,192 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
   }
 
-  header h1 { font-size: 1.2rem; font-weight: 700; }
-  header p { font-size: 0.78rem; color: #aaa; margin-top: 0.2rem; }
-  header .badge {
-    font-size: 0.72rem;
-    color: #888;
-    background: #3a3a3a;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-  }
+  header h1 { font-size: 1.4rem; font-weight: 700; }
+  header p { font-size: 0.82rem; color: #aaa; margin-top: 0.2rem; }
+  header span { font-size: 0.8rem; color: #888; }
 
-  main { max-width: 960px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
-  h2.section-title {
-    font-size: 0.72rem;
-    letter-spacing: 0.25em;
-    color: #999;
-    text-transform: uppercase;
-    margin-bottom: 1.2rem;
-    margin-top: 3rem;
-  }
-  h2.section-title:first-child { margin-top: 0; }
-
-  /* パターンカード */
   .pattern-card {
     background: white;
-    border-radius: 16px;
+    border-radius: 14px;
     overflow: hidden;
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-    transition: box-shadow 0.2s;
-  }
-  .pattern-card:hover {
-    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
   }
 
   .card-header {
-    padding: 1.4rem 1.8rem 1.2rem;
-    border-bottom: 1px solid #f0f0f0;
+    padding: 1.4rem 1.8rem;
   }
+
   .card-header .label {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     letter-spacing: 0.2em;
-    color: #bbb;
+    opacity: 0.7;
     margin-bottom: 0.3rem;
   }
+
   .card-header .title {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.3rem;
   }
+
   .card-header .concept {
-    font-size: 0.82rem;
-    color: #888;
+    font-size: 0.85rem;
+    opacity: 0.8;
   }
 
   .card-body {
-    padding: 1.6rem 1.8rem;
+    padding: 1.4rem 1.8rem;
+    background: var(--card-bg, #fdf8ee);
   }
 
   /* スウォッチ */
   .swatches {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 1.6rem;
-    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-bottom: 1.4rem;
     align-items: flex-start;
   }
+
   .swatch-item { text-align: center; }
+
   .swatch-circle {
-    width: 52px;
-    height: 52px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    border: 1px solid rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.1);
     margin: 0 auto 0.4rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   }
+
   .swatch-role {
-    font-size: 0.62rem;
-    color: #bbb;
-    display: block;
-  }
-  .swatch-hex {
     font-size: 0.68rem;
-    color: #999;
+    color: #aaa;
     display: block;
-    font-family: monospace;
   }
 
-  /* プレビューエリア */
-  .preview {
-    border-radius: 10px;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.06);
-  }
-
-  .preview-nav {
-    padding: 0.8rem 1.2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .preview-nav .logo {
-    font-size: 0.95rem;
-    font-weight: 700;
-  }
-  .preview-nav .nav-tel {
-    margin-left: auto;
-    font-size: 0.8rem;
-    font-weight: 700;
-    padding: 0.4rem 1rem;
-    border-radius: 6px;
-    border: none;
-    cursor: default;
-  }
-
-  .preview-hero {
-    padding: 2rem 1.5rem;
-  }
-  .preview-hero .catch {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.6rem;
-    line-height: 1.5;
-  }
-  .preview-hero .sub {
-    font-size: 0.82rem;
-    margin-bottom: 1.2rem;
-    opacity: 0.75;
-  }
-  .preview-hero .cta {
-    display: inline-block;
-    padding: 0.7rem 1.6rem;
-    border-radius: 8px;
-    font-size: 0.88rem;
-    font-weight: 700;
-    border: none;
-    cursor: default;
-  }
-
-  .preview-features {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-  }
-  .feature-item {
-    padding: 1rem 1.2rem;
-    text-align: center;
-    border-top: 1px solid rgba(0,0,0,0.06);
-  }
-  .feature-item:not(:last-child) {
-    border-right: 1px solid rgba(0,0,0,0.06);
-  }
-  .feature-icon {
-    font-size: 1.4rem;
-    margin-bottom: 0.4rem;
-  }
-  .feature-label {
+  .swatch-name {
     font-size: 0.75rem;
-    font-weight: 600;
-  }
-  .feature-desc {
-    font-size: 0.68rem;
-    opacity: 0.65;
-    margin-top: 0.2rem;
-  }
-
-  /* 選択ボタン */
-  .card-footer {
-    padding: 1rem 1.8rem 1.4rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-top: 1px solid #f5f5f5;
-  }
-  .select-btn {
-    padding: 0.6rem 1.4rem;
-    border-radius: 8px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    border: 2px solid #ddd;
-    background: white;
-    cursor: pointer;
-    transition: all 0.15s;
     color: #555;
-  }
-  .select-btn:hover {
-    border-color: #999;
-    color: #222;
-  }
-  .select-btn.selected {
-    background: #2c2c2c;
-    border-color: #2c2c2c;
-    color: white;
-  }
-  .vote-label {
-    font-size: 0.75rem;
-    color: #bbb;
-  }
-
-  /* 選択結果バナー */
-  #result-banner {
-    display: none;
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #2c2c2c;
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 12px;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-    z-index: 200;
-    white-space: nowrap;
-  }
-
-  /* ============ パターンA ============ */
-  .pattern-a .preview-nav { background: #4a7c59; }
-  .pattern-a .preview-nav .logo { color: white; }
-  .pattern-a .preview-nav .nav-tel { background: #f5c842; color: #2a2a2a; }
-  .pattern-a .preview-hero { background: #f5f9f6; }
-  .pattern-a .preview-hero .catch { color: #2a4a33; }
-  .pattern-a .preview-hero .cta { background: #4a7c59; color: white; }
-  .pattern-a .preview-features { background: white; }
-  .pattern-a .feature-label { color: #4a7c59; }
-
-  /* ============ パターンB ============ */
-  .pattern-b .preview-nav { background: #2d6a4f; }
-  .pattern-b .preview-nav .logo { color: white; }
-  .pattern-b .preview-nav .nav-tel { background: #d4a843; color: #2a2a2a; }
-  .pattern-b .preview-hero { background: #fdf8ee; }
-  .pattern-b .preview-hero .catch { color: #1a2e1a; }
-  .pattern-b .preview-hero .cta { background: #d4a843; color: #2a2a2a; }
-  .pattern-b .preview-features { background: white; }
-  .pattern-b .feature-label { color: #2d6a4f; }
-
-  /* ============ パターンC ============ */
-  .pattern-c .preview-nav { background: #ffffff; border-bottom: 2px solid #3a86c8; }
-  .pattern-c .preview-nav .logo { color: #3a86c8; }
-  .pattern-c .preview-nav .nav-tel { background: #3a86c8; color: white; }
-  .pattern-c .preview-hero { background: #eef5fb; }
-  .pattern-c .preview-hero .catch { color: #1a3a5c; }
-  .pattern-c .preview-hero .cta { background: #3a86c8; color: white; }
-  .pattern-c .preview-features { background: white; }
-  .pattern-c .feature-label { color: #3a86c8; }
-
-  /* ============ パターンD ============ */
-  .pattern-d .preview-nav { background: #7b5e8a; }
-  .pattern-d .preview-nav .logo { color: white; }
-  .pattern-d .preview-nav .nav-tel { background: #f0c060; color: #2a2a2a; }
-  .pattern-d .preview-hero { background: #faf7fc; }
-  .pattern-d .preview-hero .catch { color: #3a2a4a; }
-  .pattern-d .preview-hero .cta { background: #7b5e8a; color: white; }
-  .pattern-d .preview-features { background: white; }
-  .pattern-d .feature-label { color: #7b5e8a; }
-
-  /* ============ パターンE ============ */
-  .pattern-e .preview-nav { background: #c85a3a; }
-  .pattern-e .preview-nav .logo { color: white; }
-  .pattern-e .preview-nav .nav-tel { background: #fff; color: #c85a3a; border: 1px solid #c85a3a; }
-  .pattern-e .preview-hero { background: #fff9f7; }
-  .pattern-e .preview-hero .catch { color: #3a1a0a; }
-  .pattern-e .preview-hero .cta { background: #c85a3a; color: white; }
-  .pattern-e .preview-features { background: white; }
-  .pattern-e .feature-label { color: #c85a3a; }
-
-  /* メモ欄 */
-  .memo-area {
-    background: white;
-    border-radius: 12px;
-    padding: 1.4rem 1.8rem;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-  }
-  .memo-area label {
-    font-size: 0.78rem;
-    color: #999;
     display: block;
-    margin-bottom: 0.6rem;
+    font-weight: 500;
   }
-  .memo-area textarea {
-    width: 100%;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 0.8rem 1rem;
-    font-size: 0.85rem;
-    font-family: inherit;
-    resize: vertical;
-    min-height: 80px;
+
+  /* ボタンサンプル */
+  .buttons {
+    display: flex;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    padding: 0.75rem 1.4rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: none;
+    cursor: default;
+  }
+
+  .btn-secondary {
+    padding: 0.75rem 1.4rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: white;
+    cursor: default;
+  }
+
+  /* テキストサンプル */
+  .text-sample h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; color: #2a2a2a; }
+  .text-sample p { font-size: 0.82rem; color: #666; }
+
+  /* カラーコントロール（E・Fのみ） */
+  .color-controls {
+    background: #f8f8f6;
+    border-top: 1px solid #e8e8e4;
+    padding: 1.2rem 1.8rem;
+  }
+
+  .color-controls-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #888;
+    margin-bottom: 0.8rem;
+  }
+
+  .controls-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .control-item label {
+    display: block;
+    font-size: 0.72rem;
+    color: #888;
+    margin-bottom: 0.3rem;
+  }
+
+  .control-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .control-row input[type="color"] {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    padding: 2px;
+    cursor: pointer;
+    background: none;
+  }
+
+  .control-row input[type="text"] {
+    flex: 1;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-family: monospace;
     color: #333;
-    outline: none;
-    transition: border-color 0.15s;
   }
-  .memo-area textarea:focus {
-    border-color: #aaa;
+
+  /* コントラスト表示 */
+  .contrast-info {
+    margin-top: 0.8rem;
+    font-size: 0.72rem;
+    color: #888;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .contrast-badge {
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  .contrast-ok { background: #d4edda; color: #155724; }
+  .contrast-ng { background: #f8d7da; color: #721c24; }
+
+  /* 固定パターンの表示 */
+  .fixed-badge {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.2);
+    margin-left: 0.5rem;
+    vertical-align: middle;
   }
 </style>
 </head>
@@ -328,374 +217,319 @@
 
 <header>
   <div>
-    <h1>介護タクシー えまる｜カラーパレット選定</h1>
-    <p>気に入ったパターンを選んでメモを残してください</p>
+    <h1>emaru カラーパレット選定</h1>
+    <p>好きなパターンを選んでください</p>
   </div>
-  <span class="badge">5パターン比較</span>
+  <span>E・Fはリアルタイムで色を調整できます</span>
 </header>
 
 <main>
 
-  <h2 class="section-title">カラーパターン比較</h2>
-
-  <!-- パターンA -->
-  <div class="pattern-card pattern-a">
-    <div class="card-header">
-      <div class="label">PATTERN A</div>
-      <div class="title">フォレストグリーン × イエロー</div>
-      <div class="concept">自然・安心・落ち着き。介護の現場に馴染む穏やかな緑。</div>
+  <!-- PATTERN B（固定） -->
+  <div class="pattern-card">
+    <div class="card-header" style="background:#2d6a4f; color:white;">
+      <div class="label">PATTERN B <span class="fixed-badge">固定</span></div>
+      <div class="title">ディープグリーン × クリーム</div>
+      <div class="concept">自然・地域・誠実さを表現、安心感</div>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="--card-bg:#fdf8ee; background:#fdf8ee;">
       <div class="swatches">
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#4a7c59"></div>
-          <span class="swatch-role">Primary</span>
-          <span class="swatch-hex">#4a7c59</span>
+          <div class="swatch-circle" style="background:#2d6a4f;"></div>
+          <span class="swatch-role">メイン</span>
+          <span class="swatch-name">ディープグリーン</span>
         </div>
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#f5c842"></div>
-          <span class="swatch-role">Accent</span>
-          <span class="swatch-hex">#f5c842</span>
+          <div class="swatch-circle" style="background:#fdf8ee; border:1px solid #ccc;"></div>
+          <span class="swatch-role">ベース</span>
+          <span class="swatch-name">クリーム</span>
         </div>
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#f5f9f6"></div>
-          <span class="swatch-role">BG</span>
-          <span class="swatch-hex">#f5f9f6</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background:#2a4a33"></div>
-          <span class="swatch-role">Text</span>
-          <span class="swatch-hex">#2a4a33</span>
+          <div class="swatch-circle" style="background:#d4a843;"></div>
+          <span class="swatch-role">アクセント</span>
+          <span class="swatch-name">ゴールド</span>
         </div>
       </div>
-      <div class="preview">
-        <div class="preview-nav">
-          <div class="logo">🚗 介護タクシー えまる</div>
-          <button class="nav-tel">📞 0766-XX-XXXX</button>
-        </div>
-        <div class="preview-hero">
-          <div class="catch">高岡市の介護タクシー<br>えまるにお任せください</div>
-          <div class="sub">車椅子・ストレッチャーでも安心。<br>ご自宅から病院・施設まで丁寧にお送りします。</div>
-          <button class="cta">ご予約・お問い合わせ</button>
-        </div>
-        <div class="preview-features">
-          <div class="feature-item">
-            <div class="feature-icon">🏥</div>
-            <div class="feature-label">通院送迎</div>
-            <div class="feature-desc">病院・クリニック</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">♿</div>
-            <div class="feature-label">車椅子対応</div>
-            <div class="feature-desc">バリアフリー車両</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">🤝</div>
-            <div class="feature-label">介護資格あり</div>
-            <div class="feature-desc">安心のサポート</div>
-          </div>
-        </div>
+      <div class="buttons">
+        <div class="btn-primary" style="background:#d4a843; color:white;">☎ お電話はこちら</div>
+        <div class="btn-secondary" style="border:2px solid #2d6a4f; color:#2d6a4f;">サービス内容</div>
       </div>
-    </div>
-    <div class="card-footer">
-      <span class="vote-label">このパターンを選ぶ</span>
-      <button class="select-btn" onclick="selectPattern('A', this)">選択する</button>
+      <div class="text-sample">
+        <h3>介護タクシー えまる</h3>
+        <p>富山県高岡市を中心に、車いすや寝たきりの方の送迎をお手伝いしています。お気軽にご相談ください。</p>
+      </div>
     </div>
   </div>
 
-  <!-- パターンB -->
-  <div class="pattern-card pattern-b">
-    <div class="card-header">
-      <div class="label">PATTERN B</div>
-      <div class="title">ディープグリーン × ゴールド</div>
-      <div class="concept">信頼・温かみ・上品さ。現在の仮置きカラー。</div>
+  <!-- PATTERN D（固定） -->
+  <div class="pattern-card">
+    <div class="card-header" style="background:#3d2b1f; color:white;">
+      <div class="label">PATTERN D <span class="fixed-badge">固定</span></div>
+      <div class="title">ダークブラウン × イエロー</div>
+      <div class="concept">「職人感」を色で表現</div>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="background:#faf7f2;">
       <div class="swatches">
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#2d6a4f"></div>
-          <span class="swatch-role">Primary</span>
-          <span class="swatch-hex">#2d6a4f</span>
+          <div class="swatch-circle" style="background:#3d2b1f;"></div>
+          <span class="swatch-role">メイン</span>
+          <span class="swatch-name">ダークブラウン</span>
         </div>
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#d4a843"></div>
-          <span class="swatch-role">Accent</span>
-          <span class="swatch-hex">#d4a843</span>
+          <div class="swatch-circle" style="background:#faf7f2; border:1px solid #ccc;"></div>
+          <span class="swatch-role">ベース</span>
+          <span class="swatch-name">クリーム</span>
         </div>
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#fdf8ee"></div>
-          <span class="swatch-role">BG</span>
-          <span class="swatch-hex">#fdf8ee</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background:#1a2e1a"></div>
-          <span class="swatch-role">Text</span>
-          <span class="swatch-hex">#1a2e1a</span>
+          <div class="swatch-circle" style="background:#e8c547;"></div>
+          <span class="swatch-role">アクセント</span>
+          <span class="swatch-name">イエロー</span>
         </div>
       </div>
-      <div class="preview">
-        <div class="preview-nav">
-          <div class="logo">🚗 介護タクシー えまる</div>
-          <button class="nav-tel">📞 0766-XX-XXXX</button>
-        </div>
-        <div class="preview-hero">
-          <div class="catch">高岡市の介護タクシー<br>えまるにお任せください</div>
-          <div class="sub">車椅子・ストレッチャーでも安心。<br>ご自宅から病院・施設まで丁寧にお送りします。</div>
-          <button class="cta">ご予約・お問い合わせ</button>
-        </div>
-        <div class="preview-features">
-          <div class="feature-item">
-            <div class="feature-icon">🏥</div>
-            <div class="feature-label">通院送迎</div>
-            <div class="feature-desc">病院・クリニック</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">♿</div>
-            <div class="feature-label">車椅子対応</div>
-            <div class="feature-desc">バリアフリー車両</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">🤝</div>
-            <div class="feature-label">介護資格あり</div>
-            <div class="feature-desc">安心のサポート</div>
-          </div>
-        </div>
+      <div class="buttons">
+        <div class="btn-primary" style="background:#e8c547; color:#3d2b1f;">☎ お電話はこちら</div>
+        <div class="btn-secondary" style="border:2px solid #3d2b1f; color:#3d2b1f;">サービス内容</div>
       </div>
-    </div>
-    <div class="card-footer">
-      <span class="vote-label">このパターンを選ぶ</span>
-      <button class="select-btn" onclick="selectPattern('B', this)">選択する</button>
+      <div class="text-sample">
+        <h3>介護タクシー えまる</h3>
+        <p>富山県高岡市を中心に、車いすや寝たきりの方の送迎をお手伝いしています。お気軽にご相談ください。</p>
+      </div>
     </div>
   </div>
 
-  <!-- パターンC -->
-  <div class="pattern-card pattern-c">
-    <div class="card-header">
-      <div class="label">PATTERN C</div>
-      <div class="title">スカイブルー × ホワイト</div>
-      <div class="concept">清潔感・爽やか・信頼。医療・介護によく使われる清潔な青。</div>
+  <!-- PATTERN E（調整可能） -->
+  <div class="pattern-card" id="card-e">
+    <div class="card-header" id="header-e" style="background:#98dbc6;">
+      <div class="label" id="label-e" style="color:#1a3a1a; opacity:0.7;">PATTERN E</div>
+      <div class="title" id="title-e" style="color:#1a3a1a;">アクアマリン × クリーム × ダークグリーン</div>
+      <div class="concept" id="concept-e" style="color:#1a3a1a; opacity:0.8;">爽やかさ・清潔感・やわらかさ・ダークグリーンで引き締め</div>
     </div>
-    <div class="card-body">
+    <div class="card-body" id="body-e" style="background:#fdf8ee;">
       <div class="swatches">
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#3a86c8"></div>
-          <span class="swatch-role">Primary</span>
-          <span class="swatch-hex">#3a86c8</span>
+          <div class="swatch-circle" id="swatch-e-main" style="background:#98dbc6;"></div>
+          <span class="swatch-role">メイン</span>
+          <span class="swatch-name" id="name-e-main">アクアマリン</span>
         </div>
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#1a3a5c"></div>
-          <span class="swatch-role">Dark</span>
-          <span class="swatch-hex">#1a3a5c</span>
+          <div class="swatch-circle" id="swatch-e-base" style="background:#fdf8ee; border:1px solid #ccc;"></div>
+          <span class="swatch-role">ベース</span>
+          <span class="swatch-name" id="name-e-base">クリーム</span>
         </div>
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#eef5fb; border:1px solid #ddd"></div>
-          <span class="swatch-role">BG</span>
-          <span class="swatch-hex">#eef5fb</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background:#ffffff; border:1px solid #ddd"></div>
-          <span class="swatch-role">White</span>
-          <span class="swatch-hex">#ffffff</span>
+          <div class="swatch-circle" id="swatch-e-accent" style="background:#1a3a1a;"></div>
+          <span class="swatch-role">アクセント</span>
+          <span class="swatch-name" id="name-e-accent">ダークグリーン</span>
         </div>
       </div>
-      <div class="preview">
-        <div class="preview-nav">
-          <div class="logo">🚗 介護タクシー えまる</div>
-          <button class="nav-tel">📞 0766-XX-XXXX</button>
-        </div>
-        <div class="preview-hero">
-          <div class="catch">高岡市の介護タクシー<br>えまるにお任せください</div>
-          <div class="sub">車椅子・ストレッチャーでも安心。<br>ご自宅から病院・施設まで丁寧にお送りします。</div>
-          <button class="cta">ご予約・お問い合わせ</button>
-        </div>
-        <div class="preview-features">
-          <div class="feature-item">
-            <div class="feature-icon">🏥</div>
-            <div class="feature-label">通院送迎</div>
-            <div class="feature-desc">病院・クリニック</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">♿</div>
-            <div class="feature-label">車椅子対応</div>
-            <div class="feature-desc">バリアフリー車両</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">🤝</div>
-            <div class="feature-label">介護資格あり</div>
-            <div class="feature-desc">安心のサポート</div>
-          </div>
-        </div>
+      <div class="buttons">
+        <div class="btn-primary" id="btn-e" style="background:#1a3a1a; color:white;">☎ お電話はこちら</div>
+        <div class="btn-secondary" id="btn-e-sec" style="border:2px solid #98dbc6; color:#1a3a1a;">サービス内容</div>
+      </div>
+      <div class="text-sample">
+        <h3>介護タクシー えまる</h3>
+        <p>富山県高岡市を中心に、車いすや寝たきりの方の送迎をお手伝いしています。お気軽にご相談ください。</p>
       </div>
     </div>
-    <div class="card-footer">
-      <span class="vote-label">このパターンを選ぶ</span>
-      <button class="select-btn" onclick="selectPattern('C', this)">選択する</button>
+    <div class="color-controls">
+      <div class="color-controls-title">🎨 カラーを調整</div>
+      <div class="controls-grid">
+        <div class="control-item">
+          <label>メインカラー</label>
+          <div class="control-row">
+            <input type="color" id="e-main-picker" value="#98dbc6" oninput="updateE()">
+            <input type="text" id="e-main-text" value="#98dbc6" oninput="syncFromText('e-main')">
+          </div>
+        </div>
+        <div class="control-item">
+          <label>ベースカラー</label>
+          <div class="control-row">
+            <input type="color" id="e-base-picker" value="#fdf8ee" oninput="updateE()">
+            <input type="text" id="e-base-text" value="#fdf8ee" oninput="syncFromText('e-base')">
+          </div>
+        </div>
+        <div class="control-item">
+          <label>アクセントカラー</label>
+          <div class="control-row">
+            <input type="color" id="e-accent-picker" value="#1a3a1a" oninput="updateE()">
+            <input type="text" id="e-accent-text" value="#1a3a1a" oninput="syncFromText('e-accent')">
+          </div>
+        </div>
+        <div class="control-item">
+          <label>ボタン文字色</label>
+          <div class="control-row">
+            <input type="color" id="e-btntext-picker" value="#ffffff" oninput="updateE()">
+            <input type="text" id="e-btntext-text" value="#ffffff" oninput="syncFromText('e-btntext')">
+          </div>
+        </div>
+      </div>
+      <div class="contrast-info" id="e-contrast"></div>
     </div>
   </div>
 
-  <!-- パターンD -->
-  <div class="pattern-card pattern-d">
-    <div class="card-header">
-      <div class="label">PATTERN D</div>
-      <div class="title">モーヴパープル × ゴールド</div>
-      <div class="concept">やさしさ・上品・独自性。競合と全く被らない個性的な選択。</div>
+  <!-- PATTERN F（調整可能） -->
+  <div class="pattern-card" id="card-f">
+    <div class="card-header" id="header-f" style="background:#95c49a;">
+      <div class="label" id="label-f" style="color:#1a3a1a; opacity:0.7;">PATTERN F</div>
+      <div class="title" id="title-f" style="color:#1a3a1a;">ライトグリーン × 白 × イエロー</div>
+      <div class="concept" id="concept-f" style="color:#1a3a1a; opacity:0.8;">清潔感があり・ライトグリーンが映える</div>
     </div>
-    <div class="card-body">
+    <div class="card-body" id="body-f" style="background:#ffffff;">
       <div class="swatches">
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#7b5e8a"></div>
-          <span class="swatch-role">Primary</span>
-          <span class="swatch-hex">#7b5e8a</span>
+          <div class="swatch-circle" id="swatch-f-main" style="background:#95c49a;"></div>
+          <span class="swatch-role">メイン</span>
+          <span class="swatch-name" id="name-f-main">ライトグリーン</span>
         </div>
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#f0c060"></div>
-          <span class="swatch-role">Accent</span>
-          <span class="swatch-hex">#f0c060</span>
+          <div class="swatch-circle" id="swatch-f-base" style="background:#ffffff; border:1px solid #ccc;"></div>
+          <span class="swatch-role">ベース</span>
+          <span class="swatch-name" id="name-f-base">ホワイト</span>
         </div>
         <div class="swatch-item">
-          <div class="swatch-circle" style="background:#faf7fc"></div>
-          <span class="swatch-role">BG</span>
-          <span class="swatch-hex">#faf7fc</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background:#3a2a4a"></div>
-          <span class="swatch-role">Text</span>
-          <span class="swatch-hex">#3a2a4a</span>
+          <div class="swatch-circle" id="swatch-f-accent" style="background:#e8c547;"></div>
+          <span class="swatch-role">アクセント</span>
+          <span class="swatch-name" id="name-f-accent">イエロー</span>
         </div>
       </div>
-      <div class="preview">
-        <div class="preview-nav">
-          <div class="logo">🚗 介護タクシー えまる</div>
-          <button class="nav-tel">📞 0766-XX-XXXX</button>
-        </div>
-        <div class="preview-hero">
-          <div class="catch">高岡市の介護タクシー<br>えまるにお任せください</div>
-          <div class="sub">車椅子・ストレッチャーでも安心。<br>ご自宅から病院・施設まで丁寧にお送りします。</div>
-          <button class="cta">ご予約・お問い合わせ</button>
-        </div>
-        <div class="preview-features">
-          <div class="feature-item">
-            <div class="feature-icon">🏥</div>
-            <div class="feature-label">通院送迎</div>
-            <div class="feature-desc">病院・クリニック</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">♿</div>
-            <div class="feature-label">車椅子対応</div>
-            <div class="feature-desc">バリアフリー車両</div>
-          </div>
-          <div class="feature-item">
-            <div class="feature-icon">🤝</div>
-            <div class="feature-label">介護資格あり</div>
-            <div class="feature-desc">安心のサポート</div>
-          </div>
-        </div>
+      <div class="buttons">
+        <div class="btn-primary" id="btn-f" style="background:#e8c547; color:#3d2b1f;">☎ お電話はこちら</div>
+        <div class="btn-secondary" id="btn-f-sec" style="border:2px solid #95c49a; color:#1a3a1a;">サービス内容</div>
+      </div>
+      <div class="text-sample">
+        <h3>介護タクシー えまる</h3>
+        <p>富山県高岡市を中心に、車いすや寝たきりの方の送迎をお手伝いしています。お気軽にご相談ください。</p>
       </div>
     </div>
-    <div class="card-footer">
-      <span class="vote-label">このパターンを選ぶ</span>
-      <button class="select-btn" onclick="selectPattern('D', this)">選択する</button>
-    </div>
-  </div>
-
-  <!-- パターンE -->
-  <div class="pattern-card pattern-e">
-    <div class="card-header">
-      <div class="label">PATTERN E</div>
-      <div class="title">テラコッタ × ホワイト</div>
-      <div class="concept">温かみ・活力・親しみ。元気で明るい個人事業のイメージ。</div>
-    </div>
-    <div class="card-body">
-      <div class="swatches">
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background:#c85a3a"></div>
-          <span class="swatch-role">Primary</span>
-          <span class="swatch-hex">#c85a3a</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background:#3a1a0a"></div>
-          <span class="swatch-role">Dark</span>
-          <span class="swatch-hex">#3a1a0a</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background:#fff9f7"></div>
-          <span class="swatch-role">BG</span>
-          <span class="swatch-hex">#fff9f7</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background:#ffffff; border:1px solid #ddd"></div>
-          <span class="swatch-role">White</span>
-          <span class="swatch-hex">#ffffff</span>
-        </div>
-      </div>
-      <div class="preview">
-        <div class="preview-nav">
-          <div class="logo">🚗 介護タクシー えまる</div>
-          <button class="nav-tel">📞 0766-XX-XXXX</button>
-        </div>
-        <div class="preview-hero">
-          <div class="catch">高岡市の介護タクシー<br>えまるにお任せください</div>
-          <div class="sub">車椅子・ストレッチャーでも安心。<br>ご自宅から病院・施設まで丁寧にお送りします。</div>
-          <button class="cta">ご予約・お問い合わせ</button>
-        </div>
-        <div class="preview-features">
-          <div class="feature-item">
-            <div class="feature-icon">🏥</div>
-            <div class="feature-label">通院送迎</div>
-            <div class="feature-desc">病院・クリニック</div>
+    <div class="color-controls">
+      <div class="color-controls-title">🎨 カラーを調整</div>
+      <div class="controls-grid">
+        <div class="control-item">
+          <label>メインカラー</label>
+          <div class="control-row">
+            <input type="color" id="f-main-picker" value="#95c49a" oninput="updateF()">
+            <input type="text" id="f-main-text" value="#95c49a" oninput="syncFromText('f-main')">
           </div>
-          <div class="feature-item">
-            <div class="feature-icon">♿</div>
-            <div class="feature-label">車椅子対応</div>
-            <div class="feature-desc">バリアフリー車両</div>
+        </div>
+        <div class="control-item">
+          <label>ベースカラー</label>
+          <div class="control-row">
+            <input type="color" id="f-base-picker" value="#ffffff" oninput="updateF()">
+            <input type="text" id="f-base-text" value="#ffffff" oninput="syncFromText('f-base')">
           </div>
-          <div class="feature-item">
-            <div class="feature-icon">🤝</div>
-            <div class="feature-label">介護資格あり</div>
-            <div class="feature-desc">安心のサポート</div>
+        </div>
+        <div class="control-item">
+          <label>アクセントカラー</label>
+          <div class="control-row">
+            <input type="color" id="f-accent-picker" value="#e8c547" oninput="updateF()">
+            <input type="text" id="f-accent-text" value="#e8c547" oninput="syncFromText('f-accent')">
+          </div>
+        </div>
+        <div class="control-item">
+          <label>ボタン文字色</label>
+          <div class="control-row">
+            <input type="color" id="f-btntext-picker" value="#3d2b1f" oninput="updateF()">
+            <input type="text" id="f-btntext-text" value="#3d2b1f" oninput="syncFromText('f-btntext')">
           </div>
         </div>
       </div>
+      <div class="contrast-info" id="f-contrast"></div>
     </div>
-    <div class="card-footer">
-      <span class="vote-label">このパターンを選ぶ</span>
-      <button class="select-btn" onclick="selectPattern('E', this)">選択する</button>
-    </div>
-  </div>
-
-  <!-- メモ欄 -->
-  <h2 class="section-title">メモ・気になる点</h2>
-  <div class="memo-area">
-    <label>選んだ理由や気になる点など、自由に書いてください</label>
-    <textarea placeholder="例：Bが一番しっくりくる。ただし背景がもう少し明るい方がいいかも…"></textarea>
   </div>
 
 </main>
 
-<div id="result-banner"></div>
-
 <script>
-  let selectedBtn = null;
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3),16);
+  const g = parseInt(hex.slice(3,5),16);
+  const b = parseInt(hex.slice(5,7),16);
+  return [r,g,b];
+}
 
-  function selectPattern(name, btn) {
-    if (selectedBtn) {
-      selectedBtn.classList.remove('selected');
-      selectedBtn.textContent = '選択する';
-    }
-    if (selectedBtn === btn) {
-      selectedBtn = null;
-      document.getElementById('result-banner').style.display = 'none';
-      return;
-    }
-    btn.classList.add('selected');
-    btn.textContent = '✓ 選択中';
-    selectedBtn = btn;
+function luminance([r,g,b]) {
+  const ch = v => { v /= 255; return v <= 0.03928 ? v/12.92 : ((v+0.055)/1.055)**2.4; };
+  return 0.2126*ch(r) + 0.7152*ch(g) + 0.0722*ch(b);
+}
 
-    const banner = document.getElementById('result-banner');
-    banner.textContent = `パターン ${name} を選択しました`;
-    banner.style.display = 'block';
-    setTimeout(() => { banner.style.display = 'none'; }, 3000);
+function contrastRatio(hex1, hex2) {
+  const l1 = luminance(hexToRgb(hex1));
+  const l2 = luminance(hexToRgb(hex2));
+  const lighter = Math.max(l1,l2), darker = Math.min(l1,l2);
+  return ((lighter+0.05)/(darker+0.05)).toFixed(2);
+}
+
+function contrastBadge(ratio, label) {
+  const ok = parseFloat(ratio) >= 4.5;
+  return `<span class="contrast-badge ${ok?'contrast-ok':'contrast-ng'}">${label}: ${ratio}:1 ${ok?'✅':'❌'}</span>`;
+}
+
+function isValidHex(hex) {
+  return /^#[0-9a-fA-F]{6}$/.test(hex);
+}
+
+function syncFromText(id) {
+  const text = document.getElementById(id+'-text').value;
+  if (isValidHex(text)) {
+    document.getElementById(id+'-picker').value = text;
+    if (id.startsWith('e-')) updateE();
+    else updateF();
   }
+}
+
+function updateE() {
+  const main   = document.getElementById('e-main-picker').value;
+  const base   = document.getElementById('e-base-picker').value;
+  const accent = document.getElementById('e-accent-picker').value;
+  const btnText= document.getElementById('e-btntext-picker').value;
+
+  document.getElementById('e-main-text').value = main;
+  document.getElementById('e-base-text').value = base;
+  document.getElementById('e-accent-text').value = accent;
+  document.getElementById('e-btntext-text').value = btnText;
+
+  document.getElementById('header-e').style.background = main;
+  document.getElementById('body-e').style.background = base;
+  document.getElementById('swatch-e-main').style.background = main;
+  document.getElementById('swatch-e-base').style.background = base;
+  document.getElementById('swatch-e-accent').style.background = accent;
+  document.getElementById('btn-e').style.background = accent;
+  document.getElementById('btn-e').style.color = btnText;
+  document.getElementById('btn-e-sec').style.borderColor = main;
+
+  document.getElementById('e-contrast').innerHTML =
+    contrastBadge(contrastRatio(main, '#1a3a1a'), 'メイン×ダークグリーン文字') +
+    contrastBadge(contrastRatio(accent, btnText), 'アクセント×ボタン文字');
+}
+
+function updateF() {
+  const main   = document.getElementById('f-main-picker').value;
+  const base   = document.getElementById('f-base-picker').value;
+  const accent = document.getElementById('f-accent-picker').value;
+  const btnText= document.getElementById('f-btntext-picker').value;
+
+  document.getElementById('f-main-text').value = main;
+  document.getElementById('f-base-text').value = base;
+  document.getElementById('f-accent-text').value = accent;
+  document.getElementById('f-btntext-text').value = btnText;
+
+  document.getElementById('header-f').style.background = main;
+  document.getElementById('body-f').style.background = base;
+  document.getElementById('swatch-f-main').style.background = main;
+  document.getElementById('swatch-f-base').style.background = base;
+  document.getElementById('swatch-f-accent').style.background = accent;
+  document.getElementById('btn-f').style.background = accent;
+  document.getElementById('btn-f').style.color = btnText;
+  document.getElementById('btn-f-sec').style.borderColor = main;
+
+  document.getElementById('f-contrast').innerHTML =
+    contrastBadge(contrastRatio(main, '#1a3a1a'), 'メイン×ダークグリーン文字') +
+    contrastBadge(contrastRatio(accent, btnText), 'アクセント×ボタン文字');
+}
+
+// 初期コントラスト表示
+updateE();
+updateF();
 </script>
 </body>
 </html>
